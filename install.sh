@@ -86,8 +86,8 @@ sudo apt-get install -y kubelet=1.29.3-1.1 kubeadm=1.29.3-1.1 kubectl=1.29.3-1.1
 sudo apt-mark hold kubelet kubeadm kubectl
 sudo systemctl enable kubelet
 
-sudo kubeadm config images pull --cri-socket /var/run/cri-dockerd.sock --kubernetes-version v1.29.3
-sudo kubeadm init   --pod-network-cidr=10.244.0.0/16   --upload-certs --control-plane-endpoint=$(hostname) --ignore-preflight-errors=all  --cri-socket /var/run/cri-dockerd.sock
 
-kubeadm join 192.168.1.101:6443 --token ek1p8b.zdyzwivwtmp1fsvi --discovery-token-ca-cert-hash sha256:8a2c0677e2aacb15b7ed6f45c0123ffd8ec19503939b04b678b88f6fbf1f81fe --cri-socket unix:///var/run/cri-dockerd.sock
+sudo kubeadm init   --pod-network-cidr=10.244.0.0/16   --upload-certs --control-plane-endpoint=$(hostname) --cri-socket /var/run/cri-dockerd.sock
+
+kubeadm join $(hostname):6443 --token <xxx> --discovery-token-ca-cert-hash <xxx> --cri-socket unix:///var/run/cri-dockerd.sock
 
