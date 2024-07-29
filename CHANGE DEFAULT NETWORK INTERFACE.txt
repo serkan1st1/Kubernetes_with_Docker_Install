@@ -1,6 +1,7 @@
+Ağ yönlendirme tablolarını görüntülemek 
 route
 ip route
-Komutları ile kontrol et 
+
 
 Geçiçi olarak varsayılan ağ arayüzü değiştirme:
 sudo route del default
@@ -10,7 +11,8 @@ sudo ip route add default via 172.16.100.1 dev enp0s8
 
 Kalıcı olarak değiştirme: 
 
-Bridge :
+#Bridge 
+
 network:
   version: 2
   ethernets:
@@ -21,10 +23,10 @@ network:
       routes:
         - to: 0.0.0.0/0
           via: 172.16.100.1
+	  
 
-		  
+#Nat 
 
-Nat:
 network:
     ethernets:
         enp0s3:
