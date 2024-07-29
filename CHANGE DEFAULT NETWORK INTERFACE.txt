@@ -1,0 +1,38 @@
+route
+ip route
+Komutları ile kontrol et 
+
+Geçiçi olarak varsayılan ağ arayüzü değiştirme:
+sudo route del default
+sudo ip route add default via 172.16.100.1 dev enp0s8
+
+
+
+Kalıcı olarak değiştirme: 
+
+Bridge :
+network:
+  version: 2
+  ethernets:
+    enp0s8:
+      dhcp4: no
+      addresses:
+        - 172.16.100.101/24
+      routes:
+        - to: 0.0.0.0/0
+          via: 172.16.100.1
+
+		  
+
+Nat:
+network:
+    ethernets:
+        enp0s3:
+            dhcp4: true
+            dhcp4-overrides:
+              use-routes: false
+            match:
+                macaddress: 02:3b:7b:b7:3b:2d
+            set-name: enp0s3
+    version: 2
+		  
